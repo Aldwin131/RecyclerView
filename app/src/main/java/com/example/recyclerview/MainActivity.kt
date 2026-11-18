@@ -1,11 +1,11 @@
 package com.example.recyclerview
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.recyclerview.databinding.ActivityMainBinding
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
 
 class MainActivity : AppCompatActivity() {
 
@@ -56,12 +56,21 @@ class MainActivity : AppCompatActivity() {
         if (binding.btnToggleLayout.isChecked) {
             binding.rvWayang.layoutManager = GridLayoutManager(this, 2)
         } else {
-            binding.rvWayang.layoutManager = StaggeredGridLayoutManager(
-                2,
-                LinearLayoutManager.VERTICAL
-            )
+            binding.rvWayang.layoutManager = LinearLayoutManager(this)
         }
 
-        binding.rvWayang.adapter = AdapterRecView(_arWayang)
+        val adapterWayang = AdapterRecView(_arWayang)
+        adapterWayang.setOnItemClickCallback(object : AdapterRecView.OnItemClickCallback {
+            override fun onItemClicked(data: DcWayang) {
+                val intent = Intent(this@MainActivity, DetailActivity::class.java).apply {
+                    putExtra("nama", data.nama)
+                    putExtra("karakter", data.karakter)
+                    putExtra("deskripsi", data.deskripsi)
+                    putExtra("foto", data.foto)
+                }
+                startActivity(intent)
+            }
+        })
+        binding.rvWayang.adapter = adapterWayang
     }
 }
