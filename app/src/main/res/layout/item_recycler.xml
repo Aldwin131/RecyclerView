@@ -3,14 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:padding="8dp">
+    android:layout_height="wrap_content">
 
     <ImageView
         android:id="@+id/gambarWayang"
         android:layout_width="124dp"
         android:layout_height="124dp"
-        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/avatars" />
@@ -19,9 +18,8 @@
         android:id="@+id/namaWayang"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
         android:text="namaWayang"
-        android:textSize="20sp"
+        android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/gambarWayang"
@@ -29,12 +27,11 @@
 
     <TextView
         android:id="@+id/karakterWayang"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="karakterWayang"
         android:textColor="#00796B"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/namaWayang"
         app:layout_constraintTop_toBottomOf="@id/namaWayang" />
 
@@ -44,9 +41,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:text="deskripsiWayang"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/namaWayang"
+        app:layout_constraintStart_toStartOf="@id/karakterWayang"
         app:layout_constraintTop_toBottomOf="@id/karakterWayang" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
