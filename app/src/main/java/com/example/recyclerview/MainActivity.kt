@@ -2,8 +2,10 @@ package com.example.recyclerview
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.recyclerview.databinding.ActivityMainBinding
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 
 class MainActivity : AppCompatActivity() {
 
@@ -24,6 +26,10 @@ class MainActivity : AppCompatActivity() {
         siapkanData()
         tambahData()
         tampilkanData()
+
+        binding.btnToggleLayout.setOnCheckedChangeListener { _, isChecked ->
+            tampilkanData()
+        }
     }
 
     private fun siapkanData() {
@@ -47,7 +53,15 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun tampilkanData() {
-        binding.rvWayang.layoutManager = LinearLayoutManager(this)
+        if (binding.btnToggleLayout.isChecked) {
+            binding.rvWayang.layoutManager = GridLayoutManager(this, 2)
+        } else {
+            binding.rvWayang.layoutManager = StaggeredGridLayoutManager(
+                2,
+                LinearLayoutManager.VERTICAL
+            )
+        }
+
         binding.rvWayang.adapter = AdapterRecView(_arWayang)
     }
 }
